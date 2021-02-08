@@ -2,9 +2,10 @@ pipeline {
   agent none 
   stages {
     stage('test maven-nodejs') {
-      container('maven') {
+      agent { label 'maven' }
+      steps {
         git 'https://github.com/OpenLiberty/guide-rest-intro.git'
-        sh 'cd finish && mvn liberty:create'
+        sh 'mvn --version && cd finish && mvn liberty:create'
       }
     }
   }
